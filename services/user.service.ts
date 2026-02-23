@@ -8,25 +8,25 @@ export const userService = {
       const res = await fetch(
         `https://nextjs-skill-bridge-backend-project.onrender.com/api/auth/get-session`,
         {
+          method: "GET",
+          credentials: "include",
           headers: {
             Cookie: cookieStore.toString(),
           },
           cache: "no-store",
-          next: {
-            tags: ["session"],
-          },
+         
         },
       );
 
       const session = await res.json();
 
-      if (!session.ok) {
-        return { data: null, error: { message: "Session is missing" } };
-      }
+      // if (session.error) {
+      //   return { data: null, error: { message: "Session is missing" } };
+      // }
 
       return { data: session, error: null };
     } catch (err) {
-      // console.log(err);
+      console.log(err);
 
       return {
         data: null,

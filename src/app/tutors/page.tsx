@@ -47,7 +47,7 @@ const { category , search } = await props.searchParams;
           <div className="sm:col-span-3">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6">
               {
-              data?.map((tutor:TutorProfile) => (
+              data.data?.map((tutor:TutorProfile) => (
                <TutorCard key={tutor.id} tutor={tutor}></TutorCard>
               ))
               }

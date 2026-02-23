@@ -17,9 +17,9 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 export default async function Navbar() {
  
-    const { data } = await userService.getSession();
+    const  {data}  = await userService.getSession();
     // const {data} = await getSession()
- 
+    console.log(data)
     const user = data?.user;
  
  
