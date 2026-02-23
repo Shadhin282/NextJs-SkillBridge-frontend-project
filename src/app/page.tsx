@@ -71,7 +71,7 @@ export default async function Home() {
             Explore Categories
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {category?.data?.map((category : Category) => (
+            {category.data.data.map((category : Category) => (
               <Link
                 key={category.id}
                 href={`/tutors?category=${category.name}`}
@@ -81,7 +81,7 @@ export default async function Home() {
                   {category.name}
                 </div>
                 <div className="text-sm text-gray-500 mt-1">
-                  {category._count.tutors} tutors
+                  {category?._count?.tutors} tutors
                 </div>
               </Link>
             ))}
@@ -109,7 +109,7 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {data.data?.slice(0, 4).map((tutor: TutorProfile) => (
+            {data.data.data?.slice(0, 4).map((tutor: TutorProfile) => (
               <TutorCard key={tutor.id} tutor={tutor} />
             ))}
           </div>

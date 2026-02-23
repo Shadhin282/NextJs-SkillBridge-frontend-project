@@ -55,7 +55,7 @@ console.log("booking data at booking card",data)
                     {booking.subject}
                   </h3>
                   <p className="text-sm text-gray-600 flex items-center gap-1">
-                    <span>👤</span> with {booking.tutor.user.name}
+                    <span>👤</span> with {booking?.tutor?.user?.name}
                   </p>
                 </div>
                 <span
@@ -74,7 +74,7 @@ console.log("booking data at booking card",data)
               <div className="flex items-center gap-8 text-sm text-gray-600 mb-6">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
-                   {new Date(booking.date).toLocaleDateString()}
+                   {new Date(booking.date as string).toLocaleDateString()}
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />

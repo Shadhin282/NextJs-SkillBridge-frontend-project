@@ -34,7 +34,7 @@ const UserCard = ({users}:{users : User[]}) => {
                       </div>
                     </div>
                     <span className="text-gray-500 text-sm">
-                      {new Date(registration.createdAt).toISOString().split('T')[0]}
+                      {new Date(registration.createdAt as Date).toISOString().split('T')[0]}
                     </span>
                   </div>
                 ))}

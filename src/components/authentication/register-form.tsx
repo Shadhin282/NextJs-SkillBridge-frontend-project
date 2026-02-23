@@ -99,6 +99,7 @@ const RegisterForm = () => {
        
                 <form.Field
                   name='name' 
+                  
                  children={(field)=>{
                     return (
                         <div className="space-y-2">
@@ -107,7 +108,7 @@ const RegisterForm = () => {
                   name="name"
                   placeholder="full name"
                   value={field.state.value}
-                  onChange={(e)=>field.handleChange(e.target.value)}
+                  onChange={(e)=>field.handleChange(e.target.value as string)}
                   className="h-12 rounded-full px-6 text-base"
                   required
                 />

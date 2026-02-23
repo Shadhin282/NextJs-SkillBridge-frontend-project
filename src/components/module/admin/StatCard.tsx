@@ -6,8 +6,8 @@ import { Card } from '@/components/ui/card';
 
 
 const StatCard = ({totalBooking 
-,totalCategory  ,totalUser}:{totalBooking : Number 
-,totalCategory : Number ,totalUser : Number}) => {
+,totalCategory  ,totalUser}:{totalBooking : number 
+,totalCategory : number ,totalUser : number}) => {
 
             const stats = [
     {

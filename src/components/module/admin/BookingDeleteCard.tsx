@@ -10,12 +10,13 @@ import { toast } from 'sonner';
 
 
 
-const BookingDeleteCard = ({data}:{data:Booking}) => {
-    const handleDelete = async (id: string)=>{
+const BookingDeleteCard = ({data}:{data:Booking[]}) => {
+   
+  const handleDelete = async (id: string)=>{
 
-        const {data} = await deleteBooking(id)
-
-        if(data.error){
+        const {data : deleteBook} = await deleteBooking(id)
+  
+        if(deleteBook.error){
             return {message : "error found , data not delete"}
         };
         toast.success("data deleted")
@@ -45,7 +46,7 @@ const BookingDeleteCard = ({data}:{data:Booking}) => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {data.map((booking:Booking) => (
+                  {data?.map((booking:Booking) => (
                     <tr
                       key={booking.id}
                       className="hover:bg-gray-50 transition-colors"
@@ -53,15 +54,15 @@ const BookingDeleteCard = ({data}:{data:Booking}) => {
                       <td className="px-6 py-4">
                          <div className="flex items-center gap-3">
                           <Avatar className="w-10 h-10">
-                            <AvatarImage src={booking.student.image || "/placeholder.svg"} />
-                            <AvatarFallback>{booking.student.name}</AvatarFallback>
+                            <AvatarImage src={booking?.student?.image || "/placeholder.svg"} />
+                            <AvatarFallback>{booking.student?.name}</AvatarFallback>
                           </Avatar>
                           <div>
                             <p className="font-medium text-gray-900 text-sm">
-                              {booking.student.name}
+                              {booking.student?.name}
                             </p>
                             <p className="text-gray-500 text-xs">
-                              {booking.student.email}
+                              {booking.student?.email}
                             </p>
                           </div>
                         </div>
@@ -70,12 +71,12 @@ const BookingDeleteCard = ({data}:{data:Booking}) => {
                        
                           
                         
-                          {booking.tutor.user.name}
+                          {booking.tutor?.user?.name}
                         
                       </td>
                       <td className="px-6 py-4">
                         
-                          {booking.tutor.subjects[0]}
+                          {booking.tutor?.subjects ? booking?.tutor?.subjects[0] : ''}
                         
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600">
@@ -83,7 +84,7 @@ const BookingDeleteCard = ({data}:{data:Booking}) => {
                       </td>
                       <td className="px-6 py-4">
                         <Button
-                        onClick={()=>handleDelete(booking.id)}
+                        onClick={()=>handleDelete(booking.id as string)}
                           variant="ghost"
                           size="sm"
                           className="text-red-600 hover:text-red-700 hover:bg-red-50 gap-2"
@@ -99,7 +100,7 @@ const BookingDeleteCard = ({data}:{data:Booking}) => {
             </div>
 
             {/* Empty State */}
-            {data.length === 0 && (
+            {data && (
               <div className="px-6 py-12 text-center">
                 <p className="text-gray-500">No users found matching your search.</p>
               </div>

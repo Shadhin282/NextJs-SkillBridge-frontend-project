@@ -7,15 +7,15 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Ban } from 'lucide-react';
 import { patchUser } from '@/actions/user.action';
-import { toast } from 'sonner';
 
 
-const UserTableCard = ({data}: {data: User}) => {
+
+const UserTableCard = ({data}: {data: User[]}) => {
     console.log(data)
 
     const handleClick = async (id : string,status : string)=>{
         console.log('click',id,status)
-        const statusInfo = {
+        const statusInfo : User = {
             id ,
             status: 'INACTIVE'
         }
@@ -30,7 +30,7 @@ const UserTableCard = ({data}: {data: User}) => {
 
 
       const getRoleBadgeColor = (role: string) => {
-    switch (data.role) {
+    switch (role) {
       case 'student':
         return 'bg-gray-100 text-gray-800';
       case 'tutor':
@@ -89,7 +89,7 @@ const UserTableCard = ({data}: {data: User}) => {
                       <td className="px-6 py-4">
                         <Badge
                           className={`${getRoleBadgeColor(
-                            user.role
+                            user?.role as string
                           )} text-xs font-semibold capitalize`}
                         >
                           {user.role}
@@ -101,11 +101,11 @@ const UserTableCard = ({data}: {data: User}) => {
                         </Badge>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600">
-                        {new Date(user.createdAt).toISOString().split('T')[0]}
+                        {new Date(user.createdAt as Date).toISOString().split('T')[0]}
                       </td>
                       <td className="px-6 py-4">
                         <Button
-                         onClick={()=>handleClick(user.id,user.status)}
+                         onClick={()=>handleClick(user.id as string,user.status as string)}
                           variant="ghost"
                           size="sm"
                           className="text-red-600 cursor:pointer hover:text-red-700 hover:bg-red-50 gap-2"

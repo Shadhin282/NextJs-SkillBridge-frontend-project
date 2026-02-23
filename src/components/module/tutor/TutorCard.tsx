@@ -43,9 +43,9 @@ export function TutorCard({ tutor }: TutorCardProps) {
                             {subject}
                         </Badge>
                     ))}
-                    {tutor?.subjects?.length > 3 && (
-                        <Badge variant="outline">+{tutor?.subjects?.length - 3}</Badge>
-                    )}
+                    {/* {tutor.subjects?.length > 3 && (
+                        <Badge variant="outline">+{tutor.subjects?.length - 3}</Badge>
+                    )} */}
                    
                 </div>
 

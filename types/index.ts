@@ -38,12 +38,12 @@ export interface TutorProfile {
 // }
 
 export interface Category {
-  id: string;
-  name: string;
-  _count: {
-    tutors: number;
+  id?: string;
+  name?: string;
+  _count?: {
+    tutors?: number;
   };
-  description : string;
+  description? : string;
 }
 
 export interface TutorSearchParams {
@@ -73,13 +73,13 @@ export interface Review {
 }
 
 export interface User {
-  id: string;
-  name: string;
-  image: string;
-  role: string;
-  email: string;
-  createdAt: Date;
-  status: string;
+  id?: string;
+  name?: string;
+  image?: string;
+  role?: string;
+  email?: string;
+  createdAt?: Date;
+  status?: string;
 }
 
 export interface Booking {

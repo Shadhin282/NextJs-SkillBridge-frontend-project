@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 import { deleteCategory } from '@/actions/category.action';
 
 
-const CategoriesDeleteCard = ({data}:{data:Category}) => {
+const CategoriesDeleteCard = ({data}:{data:Category[]}) => {
     const handleDelete = async (id:string)=>{
 
         const {data} = await deleteCategory(id)
@@ -81,11 +81,11 @@ const CategoriesDeleteCard = ({data}:{data:Category}) => {
                         </Badge>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600">
-                        {category._count.tutors}
+                        {category?._count?.tutors}
                       </td>
                       <td className="px-6 py-4">
                         <Button
-                        onClick={()=>handleDelete(category.id)}
+                        onClick={()=>handleDelete(category?.id as string)}
                           variant="ghost"
                           size="sm"
                           className="text-red-600 hover:text-red-700 hover:bg-red-50 gap-2"
