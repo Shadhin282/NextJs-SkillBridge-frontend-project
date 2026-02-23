@@ -18,10 +18,10 @@ const BookingCard = ({bookings}:{bookings : Booking[]}) => {
                   >
                     <div>
                       <p className="font-semibold text-gray-900 text-sm">
-                        {booking.tutor.subjects[0]} 
+                        {booking?.tutor?.subjects ? booking?.tutor?.subjects[0] : ''} 
                       </p>
                       <p className="text-gray-500 text-xs ">
-                        {booking.student.name}
+                        {booking?.student?.name}
                       </p>
                     </div>
                     <Badge className={`${booking.status} text-xs font-semibold`}>

@@ -33,7 +33,7 @@ export function ReviewCard({ review }: {review:Review}) {
                         {Array.from({ length: 5 }).map((_ , i : number ) => (
                             <Star
                                 key={i}
-                                className={`w-4 h-4 ${i < review?.rating  ? 'fill-current' : 'text-gray-300'}`}
+                                className={`w-4 h-4 ${i < 0 || review.rating  ? 'fill-current' : 'text-gray-300'}`}
                             />
                         ))}
                     </div>
