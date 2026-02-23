@@ -42,7 +42,7 @@ const LoginForm = () => {
     const handleSocialLogin = async ()=>{
          const data = await authClient.signIn.social({
     provider: "google",
-    callbackURL: "http://localhost:3000/dashboard",
+    callbackURL: "https://skillbridge-project.netlify.app/dashboard",
   });
     }
 
