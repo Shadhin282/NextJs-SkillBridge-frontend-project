@@ -60,7 +60,7 @@ export interface ServiceOptions {
 
 export interface Review {
   id?: string;
-  rating?: number ;
+  rating?: number | undefined;
   comment?: string | undefined;
   tutorId?: string;
   legnth?: number;
@@ -68,7 +68,7 @@ export interface Review {
     name? : string;
     image? : string;
   };
-  createdAt? : Date;
+  createdAt? : string;
 
 }
 

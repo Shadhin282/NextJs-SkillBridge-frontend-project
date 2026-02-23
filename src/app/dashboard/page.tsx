@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import { userService } from '../../../services/user.service';
 import { BookingService } from '../../../services/booking.service';
 import { Booking } from '../../../types';
-import StudentProfileUpdateModal from '@/components/module/student/StudentProfileUpdateModal';
+
 
 
 
@@ -26,19 +26,7 @@ export default async function StudentDashboard() {
   const { data: booking } = await BookingService.getBookingById(session.user.id);
   // console.log(booking)
 
-const profile = {
 
-    id: "123",
-
-    name: "Shadhin Khan",
-
-    bio: "MERN stack developer",
-
-    department: "Computer Science",
-
-    FavroiteSubjects: ["Math", "Programming"],
-
-  };
   return (
     <>
       {/* <UserNavbar userType="student" /> */}

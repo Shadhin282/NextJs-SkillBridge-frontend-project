@@ -4,10 +4,12 @@ import { Review } from "../types";
 export const ReviewService = {
     getReviewById : async function (id : string){
             try {
-                const res = await fetch(`http://localhost:4000/api/reviews/${id}`);
+                const res = await fetch(`https://nextjs-skill-bridge-backend-project.onrender.com/api/reviews/${id}`);
             const reviewId = await res.json();
-
-            return reviewId;
+            if(reviewId.error){
+              return {data: null, error: {message: "review data not get, occur happend"}}
+            }
+            return {data:reviewId, error : null};
             } catch (error) {
                 return {data : null , error : { message  : " review data are not get" } }
             }
@@ -16,7 +18,7 @@ export const ReviewService = {
             try {
                 const cookieStore = await cookies();
                 const res = await fetch(
-        `http://localhost:4000/api/reviews`,
+        `https://nextjs-skill-bridge-backend-project.onrender.com/api/reviews`,
         {
           method: "POST",
           headers: {
@@ -36,7 +38,7 @@ export const ReviewService = {
       }
       return {data : res, error : null}
             } catch (error) {
-                console.log(error)
+                // console.log(error)
                 return {data: null, error: {message: "internal error"}}
             }
     }

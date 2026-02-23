@@ -18,14 +18,14 @@ export function ReviewCard({ review }: {review:Review}) {
                         <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
                             {/* <User className="h-4 w-4 text-primary" /> */}
                             <Avatar className=" border-4 border-white shadow-lg">
-                                    <AvatarImage src={review?.student.image} alt={review?.student.name} className="object-cover" />
-                                    <AvatarFallback>{review?.student.name.charAt(0)}</AvatarFallback>
+                                    <AvatarImage src={review?.student?.image} alt={review?.student?.name} className="object-cover" />
+                                    <AvatarFallback>{review?.student?.name?.charAt(0)}</AvatarFallback>
                                 </Avatar>
                         </div>
                         <div>
-                            <div className="font-medium text-sm">{review?.student.name}</div>
+                            <div className="font-medium text-sm">{review?.student?.name}</div>
                             <div className="text-xs text-muted-foreground">
-                                {new Date(review.createdAt).toLocaleDateString()}
+                                {new Date(review?.createdAt as string).toLocaleDateString()}
                             </div>
                         </div>
                     </div>
@@ -33,12 +33,12 @@ export function ReviewCard({ review }: {review:Review}) {
                         {Array.from({ length: 5 }).map((_ , i : number ) => (
                             <Star
                                 key={i}
-                                className={`w-4 h-4 ${i < review.rating  ? 'fill-current' : 'text-gray-300'}`}
+                                className={`w-4 h-4 ${i < review?.rating  ? 'fill-current' : 'text-gray-300'}`}
                             />
                         ))}
                     </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-2">{review.comment}</p>
+                <p className="text-sm text-gray-600 mt-2">{review?.comment}</p>
             </CardContent>
         </Card>
     );

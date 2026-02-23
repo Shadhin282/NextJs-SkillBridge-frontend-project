@@ -56,6 +56,7 @@ export default function ReviewModal({
 
       if (res.error) {
           toast.error("Failed to submit review");
+          return;
       }
 
       toast.success("Review submitted successfully ⭐");

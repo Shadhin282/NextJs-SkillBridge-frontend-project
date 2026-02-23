@@ -26,13 +26,15 @@ const LoginForm = () => {
               const { data,error } = await authClient.signIn.email(loginData);
 
             if(error) {
-              toast.error("Login not successfull ")
+              toast.error(error.message || "Invalid email or password")
+                 return;
             }
             toast.success("Login successfull")
             router.refresh()
             router.push('/')
             } catch (error) {
-              console.error(error)
+              // console.error(error)
+              toast.error("Something error found internally")
               
             }
     }
