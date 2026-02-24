@@ -6,7 +6,7 @@ async rewrites() {
     return [
       {
         source: "/api/auth/:path*",
-        destination: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/:path*`,
+        destination: "https://nextjs-skill-bridge-backend-project.onrender.com/api/auth/:path*",
       },
     ];
   },
