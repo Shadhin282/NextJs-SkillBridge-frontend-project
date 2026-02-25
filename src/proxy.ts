@@ -18,7 +18,7 @@ export const proxy = async (request : NextRequest)=>{
     const {data} = await userService.getSession();
     // const {data: tutorProfile} = await tutorService.getTutorDetailsById(data.user.id)
 
-    // console.log(data)
+    // console.log("proxy user session data",data.user.role)
 
     if(data){
         isAuthenticated = true;
@@ -26,7 +26,7 @@ export const proxy = async (request : NextRequest)=>{
         isStudent = data.user.role === Roles.student;
         isTutor = data.user.role === Roles.tutor;
     }
-
+    // console.log(isAdmin)
     if(!isAuthenticated){
         return NextResponse.redirect(new URL('/login', request.url))
     }

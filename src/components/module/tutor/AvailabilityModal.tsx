@@ -74,7 +74,7 @@ export default function AvailabilityModal({
       const res = await postAvailability(payload);
 
       if (res?.error) {
-        throw new Error("Failed");
+        return toast.error("Failed");
       }
 
       toast.success("Availability saved successfully 🎉");

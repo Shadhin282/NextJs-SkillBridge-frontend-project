@@ -16,7 +16,7 @@ const ProfilePage = async () => {
         console.log("profile ", profile)
         return (
         <div className='max-w-7xl mx-auto my-10'>
-            <TutorProfileUpdateForm profile={profile} categoryList={data.data}/>
+            <TutorProfileUpdateForm profile={profile.data} categoryList={data.data}/>
         </div>
     );
 };

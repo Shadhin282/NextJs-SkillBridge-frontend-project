@@ -48,12 +48,12 @@ export const userService = {
 
       const stats = await res.json();
 
-      if (!stats.ok) {
-        return {
-          data: null,
-          error: { message: "Stats data not get, error occur" },
-        };
-      }
+      // if (!stats.ok) {
+      //   return {
+      //     data: null,
+      //     error: { message: "Stats data not get, error occur" },
+      //   };
+      // }
 
       return { data: stats, error: null };
     } catch (error) {
@@ -78,9 +78,10 @@ export const userService = {
         },
       );
       const data = await res.json();
-      if (!data.ok) {
+      console.log(data)
+      if (data.error) {
         return {
-          data: null,
+          data,
           error: { message: "User data not get , error occur" },
         };
       }
@@ -89,7 +90,7 @@ export const userService = {
       // console.log(error);
 
       return {
-        data: null,
+        data : null,
         error: { message: "Something went wrong during get cookie" },
       };
     }

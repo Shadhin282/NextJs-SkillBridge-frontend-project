@@ -68,7 +68,7 @@ export default function BookingModal({
     const res = await postBooking(payload)
 
       if (res.error) {
-        throw new Error("Booking failed");
+        return toast.error("Booking failed");
       }
 
       toast.success("Booking created successfully 🎉");

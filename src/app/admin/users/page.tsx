@@ -8,8 +8,8 @@ export default async function UserManagement() {
   // const [searchQuery, setSearchQuery] = useState('');
 
   
-    const {data} = await userService.getUsers()
-    console.log(data)
+    const {data }= await userService.getUsers()
+    console.log("user data",data)
 
 
 

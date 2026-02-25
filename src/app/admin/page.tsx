@@ -9,10 +9,10 @@ export default async function AdminDashboard() {
 
 
   const { data: stats } = await userService.getStats();
-
-  if (!stats?.data) {
-    redirect('/login');
-  }
+  // console.log(stats)
+  // if (!stats?.data) {
+  //   redirect('/login');
+  // }
 
   const { users, bookings,
     totalBooking

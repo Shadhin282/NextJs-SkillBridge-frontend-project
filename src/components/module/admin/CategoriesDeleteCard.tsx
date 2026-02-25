@@ -12,10 +12,10 @@ import { deleteCategory } from '@/actions/category.action';
 const CategoriesDeleteCard = ({data}:{data:Category[]}) => {
     const handleDelete = async (id:string)=>{
 
-        const {data} = await deleteCategory(id)
+        const { error} = await deleteCategory(id)
 
-        if(data.error){
-            return {message : "error found , data not delete"}
+        if(error){
+            return toast.error("error found , data not delete")
         };
         toast.success("data deleted")
 

@@ -135,6 +135,7 @@ export default function TutorProfileUpdateForm({
           {(field) => (
             <Input
               type="number"
+             
               placeholder="Hourly Rate"
               value={field.state.value}
               onChange={(e) =>

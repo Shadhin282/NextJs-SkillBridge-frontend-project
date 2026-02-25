@@ -50,7 +50,7 @@ export default async function TutorDashboard() {
               <h3 className="text-gray-600 text-sm font-medium">Active Students</h3>
               <Users className="w-6 h-6 text-gray-400" />
             </div>
-            <div className="text-3xl font-bold text-gray-900">{data?.booking?.length}</div>
+            <div className="text-3xl font-bold text-gray-900">{data?.data?.booking?.length}</div>
           </div>
 
           {/* Upcoming Sessions */}
@@ -59,7 +59,7 @@ export default async function TutorDashboard() {
               <h3 className="text-gray-600 text-sm font-medium">Upcoming Sessions</h3>
               <Calendar className="w-6 h-6 text-gray-400" />
             </div>
-            <div className="text-3xl font-bold text-gray-900">{data?.booking?.length}</div>
+            <div className="text-3xl font-bold text-gray-900">{data?.data?.booking?.length}</div>
           </div>
 
           {/* Average Rating */}
@@ -68,8 +68,8 @@ export default async function TutorDashboard() {
               <h3 className="text-gray-600 text-sm font-medium">Average Rating</h3>
               <Star className="w-6 h-6 text-gray-400" />
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-2">{data?.avgRating}</div>
-            <p className="text-sm text-gray-600">Based on {data?._count?.review} reviews</p>
+            <div className="text-3xl font-bold text-gray-900 mb-2">{data?.data?.avgRating}</div>
+            <p className="text-sm text-gray-600">Based on {data?.data?._count?.review} reviews</p>
           </div>
         </div>
 
@@ -81,7 +81,7 @@ export default async function TutorDashboard() {
             </h2>
 
             <div className="space-y-4">
-              {data?.booking?.map((session:Booking) => (
+              {data?.data?.booking?.map((session:Booking) => (
                 <div
                   key={session.id}
                   className="bg-white border border-gray-200 rounded-lg p-6"
@@ -126,9 +126,9 @@ export default async function TutorDashboard() {
               <h3 className="text-xl font-bold text-gray-900 mb-6">Quick Actions</h3>
               <div className="space-y-3">
                 <span  className="w-full mr-5 justify-center items-center rounded-2xl flex bg-gray-900 text-white hover:bg-gray-800 px-4">
-                  📅 {!data?.availability ? <AvailabilityModal tutorId={data?.id}></AvailabilityModal> : <EditAvailabilityModal tutorId={data?.id}></EditAvailabilityModal>}
+                  📅 {!data?.data?.availability ? <AvailabilityModal tutorId={data?.data.id}></AvailabilityModal> : <EditAvailabilityModal tutorId={data?.data?.id}></EditAvailabilityModal>}
                 </span>
-                {data  ? <Link href={'/tutor/profile'}>
+                {data.data  ? <Link href={'/tutor/profile'}>
                 <Button
                   variant="outline"
                   className="w-full border-gray-300 justify-start bg-transparent"

@@ -26,6 +26,9 @@ export default function NavbarClient({ user }: { user: User | null }) {
           router.refresh()
           router.push("/login");
         },
+        onError : ()=>{
+          toast.error("Logout failed")
+        }
       },
     });
   };

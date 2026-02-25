@@ -7,11 +7,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Ban } from 'lucide-react';
 import { patchUser } from '@/actions/user.action';
+import { toast } from 'sonner';
 
 
 
 const UserTableCard = ({data}: {data: User[]}) => {
-    console.log(data)
+    console.log("data" ,data)
 
     const handleClick = async (id : string,status : string)=>{
         console.log('click',id,status)
@@ -21,10 +22,11 @@ const UserTableCard = ({data}: {data: User[]}) => {
         }
         const res = await patchUser(statusInfo)
 
-        if(res?.error){
-            return {message:"User Status not updated"}
+        if(res.error){
+            return toast.error("User Status not updated")
         }
         
+        toast.success("User status updated")
 
     }
 

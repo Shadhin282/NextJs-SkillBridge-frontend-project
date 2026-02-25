@@ -19,7 +19,7 @@ export default async function Navbar() {
  
     const  {data}  = await userService.getSession();
     // const {data} = await getSession()
-    console.log(data)
+    // console.log(data)
     const user = data?.user;
  
  

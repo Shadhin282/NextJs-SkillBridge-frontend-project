@@ -14,9 +14,9 @@ const BookingDeleteCard = ({data}:{data:Booking[]}) => {
    
   const handleDelete = async (id: string)=>{
 
-        const {data : deleteBook} = await deleteBooking(id)
+        const {error} = await deleteBooking(id)
   
-        if(deleteBook.error){
+        if(error){
             return {message : "error found , data not delete"}
         };
         toast.success("data deleted")
