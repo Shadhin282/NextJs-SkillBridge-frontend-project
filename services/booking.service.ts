@@ -80,9 +80,9 @@ export const BookingService = {
         }
       );
 
-      if(!res.ok){
-        return {data: null, error:{message : "Data not post"}}
-      }
+      // if(!res.ok){
+      //   return {data: null, error:{message : "Data not post"}}
+      // }
 
       return {data:res, error : null}
 

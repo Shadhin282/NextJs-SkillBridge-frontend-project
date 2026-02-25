@@ -71,9 +71,9 @@ export default function EditAvailabilityModal({
 
       console.log(payload);
 
-      const res = await putAvailability(payload);
+      const {error} = await putAvailability(payload);
 
-      if (res?.error) {
+      if (error) {
         return toast.error("Failed");
       }
 

@@ -71,9 +71,9 @@ export default function AvailabilityModal({
 
       console.log(payload);
 
-      const res = await postAvailability(payload);
+      const {error} = await postAvailability(payload);
 
-      if (res?.error) {
+      if (error) {
         return toast.error("Failed");
       }
 

@@ -65,9 +65,9 @@ export default function BookingModal({
       console.log(payload)
       
     //   ..... fetch
-    const res = await postBooking(payload)
+    const {error} = await postBooking(payload)
 
-      if (res.error) {
+      if (error) {
         return toast.error("Booking failed");
       }
 

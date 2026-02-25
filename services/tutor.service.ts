@@ -170,9 +170,9 @@ export const tutorService = {
       );
       const data = await res.json();
 
-      if (data.error) {
-        return { data: data.error, error: { message: "data not update" } };
-      }
+      // if (data.error) {
+      //   return { data: data.error, error: { message: "data not update" } };
+      // }
       return { data: data, error: null };
     } catch (error) {
       // console.log(error)
@@ -195,9 +195,9 @@ export const tutorService = {
       );
       const data = await res.json();
 
-      if (data.error) {
-        return { data: data.error, error: { message: "data not update" } };
-      }
+      // if (data.error) {
+      //   return { data: data.error, error: { message: "data not update" } };
+      // }
       return { data: data, error: null };
     } catch (error) {
       // console.log(error)
