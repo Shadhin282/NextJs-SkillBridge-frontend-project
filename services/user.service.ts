@@ -107,12 +107,12 @@ export const userService = {
         },
       );
       const data = await res.json();
-      if (!data.ok) {
-        return {
-          data: null,
-          error: { message: "User data not get , error occur" },
-        };
-      }
+      // if (!data.ok) {
+      //   return {
+      //     data: null,
+      //     error: { message: "User data not get , error occur" },
+      //   };
+      // }
       return { data, error: null };
     } catch (error) {
       // console.log(error);

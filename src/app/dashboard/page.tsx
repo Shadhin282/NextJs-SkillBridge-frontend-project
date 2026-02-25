@@ -21,7 +21,7 @@ export default async function StudentDashboard() {
 
   // console.log(session)
   const { data } = await userService.getUsersById(session.user.id)
-  // console.log("get user data by id ", data)
+  console.log("get user data by id ", data)
 
   const { data: booking } = await BookingService.getBookingById(session.user.id);
   // console.log(booking)
@@ -42,7 +42,7 @@ export default async function StudentDashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {/* Total Sessions */}
           <div className="bg-white border border-gray-200 rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
@@ -54,14 +54,14 @@ export default async function StudentDashboard() {
           </div>
 
           {/* Hours Learned */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
+          {/* <div className="bg-white border border-gray-200 rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-gray-600 text-sm font-medium">Hours Learned</h3>
               <Clock className="w-6 h-6 text-gray-400" />
             </div>
             <div className="text-3xl font-bold text-gray-900 mb-2"></div>
             <p className="text-sm text-gray-500">Total time spent learning</p>
-          </div>
+          </div> */}
 
           {/* Upcoming */}
           <div className="bg-white border border-gray-200 rounded-lg p-6">
