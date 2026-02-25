@@ -241,6 +241,7 @@ const RegisterForm = () => {
           <p className="text-center font-semibold text-foreground mb-4">Or sign up with</p>
 
           <Button
+          disabled
             onClick={() => handleSocialLogin()}
             className="h-12 rounded-full border border-border bg-background hover:bg-muted text-foreground font-semibold text-base flex items-center justify-center gap-3"
           >

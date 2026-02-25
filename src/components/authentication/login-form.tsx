@@ -101,6 +101,7 @@ const LoginForm = () => {
             </form>
             <div className="flex flex-col justify-center space-y-4">
           <Button
+          disabled
             onClick={handleSocialLogin}
             className="h-12 rounded-full border border-border bg-background hover:bg-muted text-foreground font-semibold text-base flex items-center justify-center gap-3"
           >
