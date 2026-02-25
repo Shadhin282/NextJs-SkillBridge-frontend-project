@@ -33,9 +33,9 @@ export const ReviewService = {
         }
       );
 
-      if (!res.ok) {
-        return {data : null, error : {message: "review not post"}}
-      }
+      // if (!res.ok) {
+      //   return {data : null, error : {message: "review not post"}}
+      // }
       return {data : res, error : null}
             } catch (error) {
                 // console.log(error)

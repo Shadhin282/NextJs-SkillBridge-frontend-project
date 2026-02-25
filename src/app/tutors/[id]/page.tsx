@@ -17,7 +17,7 @@ export default async function TutorProfilePage({params}:{params:Promise<{id?:str
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
            
-        <TutorDetails key={tutor?.id} tutor={tutor.data as TutorProfile} reviews={reviews}></TutorDetails>
+        <TutorDetails key={tutor?.id} tutor={tutor.data as TutorProfile} reviews={reviews.data}></TutorDetails>
             
 
         </div>

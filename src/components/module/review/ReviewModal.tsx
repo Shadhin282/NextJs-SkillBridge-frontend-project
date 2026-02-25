@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Star } from "lucide-react";
 import { postReview } from "@/actions/review.action";
+import { Review } from "../../../../types";
 
 interface Props {
   tutorId: string;
@@ -45,20 +46,21 @@ export default function ReviewModal({
 
     try {
 
-      const payload = {
+      const payload : Review = {
         tutorId,
         studentId,
         rating,
         comment,
       };
 
-      const res = await postReview(payload)
+      const {error} = await postReview(payload)
 
-      if (res.error) {
-          toast.error("Failed to submit review");
+      if (error) {
+        // console.log(error)
+          toast.error("Failed to submit review of students");
           return;
       }
-
+      
       toast.success("Review submitted successfully ⭐");
 
       setOpen(false);

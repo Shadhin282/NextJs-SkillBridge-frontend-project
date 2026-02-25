@@ -30,10 +30,10 @@ export function ReviewCard({ review }: {review:Review}) {
                         </div>
                     </div>
                     <div className="flex items-center text-yellow-500">
-                        {Array.from({ length: 5 }).map((_ , i : number ) => (
+                        {Array.from({ length: 5 }).map((_ , i : number  ) => (
                             <Star
                                 key={i}
-                                className={`w-4 h-4 ${i < 0 || review.rating  ? 'fill-current' : 'text-gray-300'}`}
+                                className={`w-4 h-4 ${i < (review.rating ?? 0) ? 'fill-current' : 'text-gray-300'}`}
                             />
                         ))}
                     </div>
