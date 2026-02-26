@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SkillBridge 🎓
+**"Connect with Expert Tutors, Learn Anything"**
 
-## Getting Started
+---
 
-First, run the development server:
+## Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+SkillBridge is a full-stack web application that connects learners with expert tutors. Students can browse tutor profiles, view availability, and book sessions instantly. Tutors can manage their profiles, set availability, and track their teaching sessions. Admins oversee the platform and manage users.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Roles & Permissions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Role | Description | Key Permissions |
+|------|-------------|-----------------|
+| **Student** | Learners who book tutoring sessions | Browse tutors, book sessions, leave reviews, manage profile |
+| **Tutor** | Experts who offer tutoring services | Create profile, set availability, view bookings, manage subjects |
+| **Admin** | Platform moderators | Manage all users, view analytics, moderate content |
 
-## Learn More
+> 💡 **Note**: Users select their role during registration.Admin accounts should be seeded in the database.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🛠️ **See [README.md](./README.md#-tech-stack) for complete technology specifications.**
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Public Features
+- Browse and search tutors by subject, rating, and price
+- Filter tutors by category
+- View detailed tutor profiles with reviews
+- Landing page with featured tutors
+
+### Student Features
+- Register and login as student
+- Book tutoring sessions
+- View upcoming and past bookings
+- Leave reviews after sessions
+- Manage profile
+
+### Tutor Features
+- Register and login as tutor
+- Create and update tutor profile
+- Set availability slots
+- View teaching sessions
+- See ratings and reviews
+
+### Admin Features
+- View all users (students and tutors)
+- Manage user status (ban/unban)
+- View all bookings
+- Manage categories
+
+------
+
+### Tech Dependencies
+
+"dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@tanstack/react-form": "^1.28.3",
+    "better-auth": "^1.4.18",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.563.0",
+    "next": "16.1.6",
+    "next-themes": "^0.4.6",
+    "radix-ui": "^1.4.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-hook-form": "^7.71.1",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "shadcn": "^3.8.4",
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^5"
+  }
+
+---
