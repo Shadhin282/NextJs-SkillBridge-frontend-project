@@ -1,5 +1,5 @@
 "use server"
-import { updateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { BookingService } from "../../services/booking.service"
 import { Booking } from "../../types";
 
@@ -7,12 +7,12 @@ import { Booking } from "../../types";
 export const deleteBooking = async (id : string)=>{
 
     const res = await BookingService.deleteBooking(id);
-    updateTag('bookingDelete')
+    revalidateTag('bookingDelete')
     return res;
 }
 
 export const postBooking = async (payload: Booking)=>{
     const res = await BookingService.PostBooking(payload)
-    updateTag('bookingPost')
+    revalidateTag('bookingPost')
     return res;
 }
