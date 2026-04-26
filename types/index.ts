@@ -90,11 +90,11 @@ export interface Booking {
   date?: string;
   status?: string;
   createdAt?: Date;
+  paymentIntentId?: string;
   student? : {
     email? : string;
     name? : string ;
     image? : string;
-
   };
   subject ?: string;
   time ?: string;
@@ -105,7 +105,8 @@ export interface Booking {
     user ?: {
         name ?: string;
     }
-  }
+  };
+  payment?: Payment;
 }
 
 export interface StudentProfile {
@@ -128,4 +129,15 @@ export interface Availability {
   day? : string;
   startTime? : string;
   endTime? : string;
+}
+
+export interface Payment {
+  id?: string;
+  bookingId?: string;
+  studentId?: string;
+  amount?: number;
+  currency?: string;
+  stripePaymentId?: string;
+  status?: 'PENDING' | 'COMPLETED' | 'FAILED' | 'REFUNDED';
+  createdAt?: Date;
 }

@@ -147,7 +147,7 @@ console.log("review details ", reviews )
                                {/* { roleStudent  &&
                                 <ButtonModal></ButtonModal>
                                 } */}
-                                {roleStudent && <BookingModal tutorId={tutor.id as string} studentId={data.user.id}></BookingModal>}
+                                {roleStudent && <BookingModal tutorId={tutor.id as string} studentId={data.user.id} hourlyRate={tutor?.hourlyRate || 0}></BookingModal>}
 
                                 <p className="text-xs text-center text-gray-500">
                                     100% Satisfaction Guaranteed

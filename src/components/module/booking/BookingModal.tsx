@@ -13,21 +13,27 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import { postBooking } from "@/actions/booking.action";
+import { createPaymentIntentAction } from "@/actions/payment.action";
+import PaymentModal from "./PaymentModal";
 
 interface Props {
   tutorId: string;
   studentId: string;
+  hourlyRate: number;
   onSuccess?: () => void;
 }
 
 export default function BookingModal({
   tutorId,
   studentId,
+  hourlyRate,
   onSuccess,
 }: Props) {
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState<1 | 2>(1);
+  const [clientSecret, setClientSecret] = useState<string>("");
 
   const [formData, setFormData] = useState({
     subject: "",
@@ -45,14 +51,40 @@ export default function BookingModal({
     });
   };
 
-  const handleSubmit = async (
-    e: React.FormEvent
-  ) => {
+  const handleProceedToPayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
+      const amount = (hourlyRate || 0) * Number(formData.duration);
+      
+      if (amount <= 0) {
+        toast.error("Valid duration and rate are required");
+        setLoading(false);
+        return;
+      }
 
+      const { data, error } = await createPaymentIntentAction(amount);
+      
+      if (error || !data) {
+        toast.error(error?.message || "Failed to initialize payment");
+        setLoading(false);
+        return;
+      }
+
+      setClientSecret(data.clientSecret);
+      setStep(2);
+    } catch (error) {
+      toast.error("Failed to process payment request");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePaymentSuccess = async (paymentIntentId: string) => {
+    setLoading(true);
+    let closeValues = false;
+    try {
       const payload = {
         tutorId,
         studentId,
@@ -60,106 +92,121 @@ export default function BookingModal({
         date: new Date(formData.date).toISOString(),
         time: new Date(`${formData.date}T${formData.time}`).toISOString(),
         duration: Number(formData.duration),
-        status : "CONFIRMED"
+        status: "CONFIRMED",
+        paymentIntentId, // The payment intent from stripe
       };
-      console.log(payload)
       
-    //   ..... fetch
-    const {error} = await postBooking(payload)
+      const { error } = await postBooking(payload);
 
       if (error) {
-        return toast.error("Booking failed");
+        toast.error(error.message || "Booking failed during confirmation");
+        return;
       }
 
-      toast.success("Booking created successfully 🎉");
+      toast.success("Payment successful! Booking confirmed 🎉");
 
-      setOpen(false);
-      onSuccess?.();
-
+      closeValues = true;
     } catch (error) {
-      toast.error("Booking failed");
+      toast.error("Booking verification failed");
     } finally {
       setLoading(false);
+      if (closeValues) {
+        setOpen(false);
+        setStep(1);
+        onSuccess?.();
+      }
     }
   };
 
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen) {
+      setStep(1);
+    }
+    setOpen(isOpen);
+  };
 
+  return (
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button className="w-full">
           Book Now
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-lg">
-
+      <DialogContent className="sm:max-w-lg overflow-y-auto max-h-[90vh]">
         <DialogHeader>
-          <DialogTitle>Book Session</DialogTitle>
+          <DialogTitle>{step === 1 ? "Book Session" : "Payment"}</DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        {step === 1 && (
+          <form onSubmit={handleProceedToPayment} className="space-y-4">
+            {/* Subject */}
+            <div>
+              <Label>Subject</Label>
+              <Input
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          {/* Subject */}
-          <div>
-            <Label>Subject</Label>
-            <Input
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            {/* Date */}
+            <div>
+              <Label>Date</Label>
+              <Input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          {/* Date */}
-          <div>
-            <Label>Date</Label>
-            <Input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            {/* Time */}
+            <div>
+              <Label>Time</Label>
+              <Input
+                type="time"
+                name="time"
+                value={formData.time}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          {/* Time */}
-          <div>
-            <Label>Time</Label>
-            <Input
-              type="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            {/* Duration */}
+            <div>
+              <Label>Duration (hours)</Label>
+              <Input
+                type="number"
+                name="duration"
+                min="1"
+                value={formData.duration}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          {/* Duration */}
-          <div>
-            <Label>Duration (hours)</Label>
-            <Input
-              type="number"
-              name="duration"
-              min="1"
-              value={formData.duration}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={loading}
+            >
+              {loading ? "Generating Payment..." : `Proceed to Payment ($${(hourlyRate * Number(formData.duration)).toFixed(2)})`}
+            </Button>
+          </form>
+        )}
 
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={loading}
-          >
-            {loading ? "Booking..." : "Confirm Booking"}
-          </Button>
-
-        </form>
-
+        {step === 2 && clientSecret && (
+          <PaymentModal 
+            clientSecret={clientSecret} 
+            onSuccess={handlePaymentSuccess} 
+            onCancel={() => setStep(1)}
+            amount={hourlyRate * Number(formData.duration)}
+          />
+        )}
       </DialogContent>
-
     </Dialog>
   );
 }
