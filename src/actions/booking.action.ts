@@ -7,12 +7,12 @@ import { Booking } from "../../types";
 export const deleteBooking = async (id : string)=>{
 
     const res = await BookingService.deleteBooking(id);
-    revalidateTag('bookingDelete')
+    revalidateTag('bookingDelete','max')
     return res;
 }
 
 export const postBooking = async (payload: Booking)=>{
     const res = await BookingService.PostBooking(payload)
-    revalidateTag('bookingPost')
+    
     return res;
 }

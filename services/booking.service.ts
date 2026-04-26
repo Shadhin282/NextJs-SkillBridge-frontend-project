@@ -74,9 +74,7 @@ export const BookingService = {
             Cookie : cookieStore.toString()
           },
           body: JSON.stringify(payload),
-          next:{
-            tags: ['bookingPost']
-          }
+          
         }
       );
 
