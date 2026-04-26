@@ -99,7 +99,7 @@ export default function BookingModal({
       const { data,error } = await postBooking(payload);
 
       if (error || !data) {
-        toast.error(error.message || "Booking failed during confirmation");
+        toast.error(error?.message || "Booking failed during confirmation");
         return;
       }
 
