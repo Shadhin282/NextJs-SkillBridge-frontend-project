@@ -8,7 +8,7 @@ export const PaymentService = {
       // Using localhost here because the onrender backend doesn't have the new payment routes yet.
       // Make sure your backend runs on port 4000.
       const res = await fetch(
-        `http://localhost:4000/api/payments/create-intent`,
+        `https://nextjs-skill-bridge-backend-project.onrender.com/api/payments/create-intent`,
         {
           method: "POST",
           headers: {

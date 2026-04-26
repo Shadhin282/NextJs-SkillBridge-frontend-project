@@ -107,7 +107,7 @@ export default function BookingModal({
 
       closeValues = true;
     } catch (error) {
-      toast.error("Booking verification failed");
+      toast.error( "Booking verification failed");
     } finally {
       setLoading(false);
       if (closeValues) {
