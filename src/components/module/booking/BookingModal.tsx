@@ -96,9 +96,9 @@ export default function BookingModal({
         paymentIntentId, // The payment intent from stripe
       };
       
-      const { error } = await postBooking(payload);
+      const { data,error } = await postBooking(payload);
 
-      if (error) {
+      if (error || !data) {
         toast.error(error.message || "Booking failed during confirmation");
         return;
       }

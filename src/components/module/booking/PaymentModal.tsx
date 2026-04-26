@@ -61,7 +61,7 @@ function CheckoutForm({ onSuccess, onCancel, amount }: CheckoutFormProps) {
 
       <PaymentElement />
 
-      <div className="flex gap-4 pt-4">
+      <div className="flex flex-col-reverse gap-4 pt-4">
         <Button 
           type="button" 
           variant="outline" 
